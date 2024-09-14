@@ -68,7 +68,6 @@ func (cs *ChatServer) getMessages(w http.ResponseWriter, r *http.Request) {
 	messages := cs.messages[user]
 	now := time.Now()
 	for _, msg := range messages {
-		// Intentional bug: This will panic if msg.Expires is nil
 		if now.Sub(msg.SentAt).Seconds() < float64(*msg.Expires) {
 			validMessages = append(validMessages, msg)
 		}

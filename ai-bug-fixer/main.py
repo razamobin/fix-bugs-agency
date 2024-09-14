@@ -9,6 +9,7 @@ from pydantic import Field
 
 load_dotenv()
 api_key = os.getenv('OPENAI_API_KEY')
+#print(api_key)
 set_openai_key(api_key)
 
 

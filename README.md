@@ -103,8 +103,17 @@ Now that you have errors logged to `logs/error.log`, you can run the AI bug fixe
 
     ```
     python -m venv venv
+    ```
+
+    ```
     source venv/bin/activate
+    ```
+
+    ```
     which pip
+    ```
+
+    ```
     which python
     ```
 

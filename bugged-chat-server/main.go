@@ -7,6 +7,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"path/filepath"
 	"runtime"
 	"time"
 )
@@ -98,15 +99,21 @@ func recoveryMiddleware(next http.HandlerFunc, errorLogger *log.Logger) http.Han
 }
 
 func main() {
-	// Set up error logging to error.log
-	errorLog, err := os.OpenFile("error.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	// Create logs directory if it doesn't exist
+	logsDir := "./logs"
+	if err := os.MkdirAll(logsDir, 0755); err != nil {
+		log.Fatalf("Failed to create logs directory: %v", err)
+	}
+
+	// Set up error logging to logs/error.log
+	errorLog, err := os.OpenFile(filepath.Join(logsDir, "error.log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatalf("Failed to open error log file: %v", err)
 	}
 	defer errorLog.Close()
 
-	// Set up info logging to info.log
-	infoLog, err := os.OpenFile("info.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	// Set up info logging to logs/info.log
+	infoLog, err := os.OpenFile(filepath.Join(logsDir, "info.log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatalf("Failed to open info log file: %v", err)
 	}

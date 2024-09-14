@@ -51,7 +51,7 @@ This project demonstrates an AI-powered bug fixing system using two components: 
     curl -X GET http://localhost:8080/messages?user=raza
     ```
 
-5. Try sending messages without the "expires" field to trigger the bug:
+5. Try sending messages without the "expires" field:
 
     ```
     curl -X POST http://localhost:8080/send \

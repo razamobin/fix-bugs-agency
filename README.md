@@ -114,17 +114,14 @@ Now that you have errors logged to `logs/error.log`, you can run the AI bug fixe
 4. This will start an interactive terminal. You can prompt the agent with 3 folders:
 
     ```
-    logs: ../bugged-chat-server/logs
+    error logs: ../bugged-chat-server/logs
     source code: ../bugged-chat-server
-    agent generateddiffs: ./diffs
+    agent proposed diffs: ./diffs
     ```
 
     So the prompt should look like this:
 
-    ```
-    hello, i have some error logs and i want to fix the bugs that each error represents if possible. the error logs are in this dir: "../bugged-chat-server/logs" you also can access the source code here "../bugged-chat-server" the error logs will often point to a source file name and line of code, so you can look at that area of the source file, and perhaps come up with suggested bug fixes if you see something that could be fixed, or designed better, or made more resilient. the goal is to make the code resilient instead of asking the caller to pass in better data. we should be able to handle anything that is close enough to what we might expect (within reason). please put your proposed diff files in this dir: "./diffs"
-
-    ```
+    > hello, i have some error logs and i want to fix the bugs that each error represents if possible. the error logs are in this dir: "../bugged-chat-server/logs" you also can access the source code here "../bugged-chat-server" the error logs will often point to a source file name and line of code, so you can look at that area of the source file, and perhaps come up with suggested bug fixes if you see something that could be fixed, or designed better, or made more resilient. the goal is to make the code resilient instead of asking the caller to pass in better data. we should be able to handle anything that is close enough to what we might expect (within reason). please put your proposed diff files in this dir: "./diffs"
 
 5. The AI agent will analyze the error logs and source code, then generate a diff file with the proposed fix if one is found.
 

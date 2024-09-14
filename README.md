@@ -99,19 +99,38 @@ Now that you have errors logged to `logs/error.log`, you can run the AI bug fixe
     cd ai-bug-fixer
     ```
 
-2. Install dependencies:
+2. Set up a virtual environment and install dependencies:
+
+    ```
+    python -m venv venv
+    source venv/bin/activate
+    which pip
+    which python
+    ```
+
+    Confirm that the output of `which pip` and `which python` points to the `venv` directory.
+
+    Then proceed with installing the dependencies:
 
     ```
     pip install -r requirements.txt
     ```
 
-3. Run the AI bug fixer agent:
+3. Set up the environment file:
+
+    ```
+    cp .env.example .env
+    ```
+
+    Open the `.env` file and fill in your OpenAI API key.
+
+4. Run the AI bug fixer agent:
 
     ```
     python main.py
     ```
 
-4. This will start an interactive terminal. You can prompt the agent with 3 folders:
+5. This will start an interactive terminal. You can prompt the agent with 3 folders:
 
     ```
     error logs: ../bugged-chat-server/logs
@@ -123,7 +142,7 @@ Now that you have errors logged to `logs/error.log`, you can run the AI bug fixe
 
     > hello, i have some error logs and i want to fix the bugs that each error represents if possible. the error logs are in this dir: "../bugged-chat-server/logs" you also can access the source code here "../bugged-chat-server" the error logs will often point to a source file name and line of code, so you can look at that area of the source file, and perhaps come up with suggested bug fixes if you see something that could be fixed, or designed better, or made more resilient. the goal is to make the code resilient instead of asking the caller to pass in better data. we should be able to handle anything that is close enough to what we might expect (within reason). please put your proposed diff files in this dir: "./diffs"
 
-5. The AI agent will analyze the error logs and source code, then generate a diff file with the proposed fix if one is found.
+6. The AI agent will analyze the error logs and source code, then generate a diff file with the proposed fix if one is found.
 
     ```
     cat diffs/*
